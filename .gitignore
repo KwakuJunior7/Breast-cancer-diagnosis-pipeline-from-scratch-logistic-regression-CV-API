@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+mlruns/
+reports/runs/
+models/*.joblib
+.ipynb_checkpoints/
+.DS_Store
+
+# My private interview-prep notes: kept locally, never pushed
+LEARNING.md

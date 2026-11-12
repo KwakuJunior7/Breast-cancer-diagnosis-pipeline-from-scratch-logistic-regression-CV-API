@@ -1,0 +1,16 @@
+# Everything needed to train, test and serve. Tested with Python 3.13,
+# numpy 2.5, pandas 3.0, scikit-learn 1.9, matplotlib 3.11, pydantic 2.13.
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+matplotlib>=3.7
+pyyaml>=6.0
+joblib>=1.3
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.5
+pytest>=8.0
+httpx>=0.27
+ruff>=0.4
+# Optional: experiment tracking UI (`mlflow ui`). Without it, runs are saved as JSON.
+# mlflow>=2.10

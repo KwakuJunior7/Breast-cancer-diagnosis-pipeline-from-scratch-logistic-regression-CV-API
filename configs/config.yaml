@@ -1,0 +1,30 @@
+# Single source of truth for every run. Change values here, not in code.
+
+data:
+  raw_path: data/raw/wdbc.data
+  test_size: 0.20          # held-out test set, touched exactly once at the end
+  random_state: 42
+
+cv:
+  n_splits: 5              # stratified k-fold on the training set only
+  n_repeats: 3             # repeat with different shuffles to get stable estimates
+
+scratch_logreg:            # our NumPy implementation (src/wdbc/logistic_scratch.py)
+  learning_rate: auto      # "auto" = 1/L from the data (see logistic_scratch.py), or a number
+  l2: 0.01                 # lambda in  J(w) = mean cross-entropy + (lambda/2)*||w||^2
+  max_iter: 50000
+  tol: 1.0e-10             # stop when |J(k) - J(k-1)| < tol  (replaces "epochs = 5")
+
+threshold:
+  target_recall: 0.98      # pick the highest threshold whose CV recall >= this
+
+model_selection:
+  metric: roc_auc          # rank candidates by mean CV ROC-AUC (threshold-free)
+  tie_tolerance: 0.002     # models within this of the best score count as tied;
+                           # ties go to the simplest model (order in models.py)
+  deploy: auto             # "auto" = rule above, or a model name to force it
+
+paths:
+  models_dir: models
+  reports_dir: reports
+  figures_dir: reports/figures
